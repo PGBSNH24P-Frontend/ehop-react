@@ -6,6 +6,10 @@ import { useState } from "react";
 export function ProductPage() {
     const [activeImage, setActiveImage] = useState(0);
     const [size, setSize] = useState("small");
+
+    // Importera state funktionen som lägger till produkter i varukorgen
+    const addCartItem = useStore(state => state.addCartItem);
+
     const params = useParams();
     const products = useStore(state => state.products);
 
@@ -67,7 +71,9 @@ export function ProductPage() {
                                 </Select>
                             </FormControl>
 
-                            <Button variant="contained">Add to Cart</Button>
+                            <Button variant="contained"
+                                onClick={() => addCartItem(product)}
+                            >Add to Cart</Button>
                         </Box>
                     </Grid>
                 </Grid>

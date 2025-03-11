@@ -6,6 +6,7 @@ import { Link as UiLink, AppBar, Avatar, Box, Button, Container, IconButton, Men
 import { useEffect } from "react"
 import { fetchProducts } from "./api/products"
 import { useStore } from "./states/store"
+import { Cart } from "./components/Cart"
 
 function App() {
   const setProducts = useStore(state => state.setProducts);
@@ -28,6 +29,9 @@ function App() {
 }
 
 function Layout() {
+  // Importera state funktionen som öppnar varukorgen
+  const setCartOpen = useStore(state => state.setCartOpen);
+
   return <>
     <header>
       <AppBar position="static">
@@ -54,6 +58,9 @@ function Layout() {
             <Box sx={{ flexGrow: 1, gap: 2, display: { xs: 'none', md: 'flex' } }}>
               <UiLink href="/" color="inherit">Home</UiLink>
               <UiLink href="/shop" color="inherit">Shop</UiLink>
+              <Button onClick={() => setCartOpen(true)} color="inherit">
+                Cart
+              </Button>
             </Box>
           </Toolbar>
         </Container>
@@ -62,6 +69,7 @@ function Layout() {
 
     <main>
       <Outlet />
+      <Cart />
     </main>
 
     <footer>Footer</footer>
