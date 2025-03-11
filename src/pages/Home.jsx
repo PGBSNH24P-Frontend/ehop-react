@@ -28,6 +28,5 @@ export function HomePage() {
                 </Grid>
             </Box>
         </Container>
-
     </section>;
 }
